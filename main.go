@@ -13,22 +13,6 @@ import (
 var database *sql.DB
 var err error
 
-//Task is the struct used to identify tasks
-type Task struct {
-	ID      int
-	Title   string
-	Content string
-	Created string
-}
-
-//Context is the struct passed to templates
-type Context struct {
-	Tasks      []Task
-	Navigation string
-	Search     string
-	Message    string
-}
-
 func init() {
 	connStr := "user=bracket dbname=tasks sslmode=disable"
 	database, err = sql.Open("postgres", connStr)
