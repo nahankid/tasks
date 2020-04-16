@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"tasks/types"
 	"time"
 
 	_ "github.com/lib/pq"
@@ -41,9 +42,9 @@ func ShowAllTasksFunc(w http.ResponseWriter, r *http.Request) {
 }
 
 // GetTasks returns tasks from the database
-func GetTasks() Context {
-	var tasks []Task
-	var context Context
+func GetTasks() types.Context {
+	var tasks []types.Task
+	var context types.Context
 	var TaskID int
 	var TaskTitle string
 	var TaskContent string
@@ -65,7 +66,7 @@ func GetTasks() Context {
 		}
 
 		TaskCreated = TaskCreated.Local()
-		task := Task{
+		task := types.Task{
 			ID:      TaskID,
 			Title:   TaskTitle,
 			Content: TaskContent,
@@ -74,7 +75,7 @@ func GetTasks() Context {
 
 		tasks = append(tasks, task)
 	}
-	context = Context{Tasks: tasks}
+	context = types.Context{Tasks: tasks}
 	return context
 }
 
